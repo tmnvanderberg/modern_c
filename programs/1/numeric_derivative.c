@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <math.h>
 #include <stdio.h>
 
@@ -19,6 +20,9 @@ double derivative(double (*fun)(double), double x) {
 
 double func(double x) { return x * x; }
 
+double func_symb_der(double x) { return 2 * x; }
+
 int main() {
-  printf(" >> derivate of func at 3: %f\n", derivative(&func, 3.0));
+  const double x = 4.3;
+  assert(fabs(derivative(&func, x) - func_symb_der(x)) <= ERR_LIM);
 }
